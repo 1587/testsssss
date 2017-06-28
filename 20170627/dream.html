@@ -65,19 +65,19 @@
 
             <div class="col-md-4 col-sm-6" v-for="seed in seeds">
 
-                <img :src="'https://s3.eu-central-1.amazonaws.com/eu-ddream-fb/dream_' + seed + '.jpg'" data-toggle="modal" :data-target="'#' + seed">
+                <img :src="seed.url + '-fb/' + seed.code + '.jpg'" data-toggle="modal" :data-target="'#' + seed.code">
 
-                <div class="modal fade" :id="seed" tabindex="-1" role="dialog" :aria-labelledby="seed + 'Label'">
+                <div class="modal fade" :id="seed.code" tabindex="-1" role="dialog" :aria-labelledby="seed.code + 'Label'">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" :id="seed + 'Label'">{{ seed }}</h4>
+                                <h4 class="modal-title" :id="seed.code + 'Label'">{{ seed.code }}</h4>
                             </div>
                             <div class="modal-body">
-                                <img :src="'https://s3.eu-central-1.amazonaws.com/eu-ddream-origgin/dream_' + seed + '.jpg'" alt="origgin">
-                                <img :src="'https://s3.eu-central-1.amazonaws.com/eu-ddream/dream_' + seed + '.jpg'" alt="origgin">
-                                <img :src="'https://s3.eu-central-1.amazonaws.com/eu-ddream-style/dream_' + seed + '.jpg'" alt="origgin">
+                                <!-- <img :src="seed.url + '-origgin/' + seed.code + '.jpg'" alt="origgin"> -->
+                                <!-- <img :src="seed.url + '/' + seed.code + '.jpg'" alt="origgin"> -->
+                                <!-- <img :src="seed.url + '-style/' + seed.code + '.jpg'" alt="origgin"> -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
