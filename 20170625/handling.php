@@ -1,11 +1,12 @@
 <?php
-require './help.php';
+require dirname(__FILE__) . '/help.php';
 comment('-------> start <------');
 
-$jubi_price = exec("curl -s https://www.jubi.com/api/v1/ticker?coin=doge | jq '.last'");
-$jubi_price  = trim($jubi_price ,'"');
+$jubi_price = json_decode(file_get_contents("https://www.jubi.com/api/v1/ticker?coin=doge"),true)['last'];
+// $jubi_price  = trim($jubi_price ,'"');
 
-$btc_price = exec("curl -s https://api.btctrade.com/api/ticker?coin=doge | jq '.last'");
+$btc_price = json_decode(file_get_contents("https://api.btctrade.com/api/ticker?coin=doge"),true)['last'];
+
 
 info('聚币网：',$jubi_price);
 info('比交网：',$btc_price);
@@ -62,12 +63,19 @@ function demo($money,$low,$high){
 
 
     line('扣除体现服务费0.4%：',$money*0.004);
-    info('剩余.',(int)$money*0.996);
 
-    // if($ori_money >= 10000 && $ori_money - $money > 500){
+    $money = (int)$money*0.996;
+
+    info('剩余.',$money);
+
+    $get_money = $money - $ori_money;
+
+    $get_money>0?comment('盈利：' . $get_money):comment('亏损：' . $get_money);
+
+    if($ori_money >= 10000 && $money - $ori_money > 500){
+        comment('------- FAIR -------');
         exec('osascript -e \'display notification ".." with title "🐶    赚取' . ($ori_money - $money) . '"\'');
-    // }
-
+    }
 }
 
 

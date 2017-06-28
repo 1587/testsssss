@@ -1,0 +1,13 @@
+while [[ true ]]; do
+    str=`curl -s 'https://www.yuanbao.com/user_exchange/coinout/coinname/mcc' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, sdch, br' -H 'Accept-Language: zh,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: no-cache' -H 'Cookie: __jsluid=86c35ebf002835de762489f0cd70473b; T=1; USER_UNI=b251465e3ad84be706ee3e3ec9b65151; YBEXUUID=a4edb7d0-5a21-11e7-9b9c-2c44fd946be8; GA_527338=0; _fmdata=CEE2B348E15A2DB5EA786298C1FCC2F6BFAE3421B98845D1522F3FA9E433F7F7B47E7D59F6D1FF16794A3A3CF3AF02405ED16A0C4EE768D3; UNIQUEID=2a54d68b5077e9e14358a1133d1e6698; COINTYPE=mcc2cny; chartSettings=%7B%22ver%22%3A3%2C%22charts%22%3A%7B%22chartStyle%22%3A%22CandleStick%22%2C%22mIndic%22%3A%22MA%22%2C%22indics%22%3A%5B%22VOLUME%22%2C%22MACD%22%5D%2C%22indicsStatus%22%3A%22close%22%2C%22period%22%3A%221d%22%2C%22period_weight%22%3A%7B%22line%22%3A6%2C%221min%22%3A5%2C%225min%22%3A4%2C%2215min%22%3A7%2C%2230min%22%3A3%2C%221hour%22%3A2%2C%221day%22%3A8%2C%221week%22%3A1%2C%223min%22%3A0%2C%222hour%22%3A0%2C%224hour%22%3A0%2C%226hour%22%3A0%2C%2212hour%22%3A0%2C%223day%22%3A0%7D%2C%22areaHeight%22%3A%5B%5D%2C%22market_from%22%3A%22mcc2cny%22%7D%2C%22indics%22%3A%7B%22MA%22%3A%5B7%2C30%2C0%2C0%2C0%2C0%5D%2C%22EMA%22%3A%5B7%2C30%2C0%2C0%2C0%2C0%5D%2C%22VOLUME%22%3A%5B5%2C10%5D%2C%22MACD%22%3A%5B12%2C26%2C9%5D%2C%22KDJ%22%3A%5B9%2C3%2C3%5D%2C%22StochRSI%22%3A%5B14%2C14%2C3%2C3%5D%2C%22RSI%22%3A%5B6%2C12%2C24%5D%2C%22DMI%22%3A%5B14%2C6%5D%2C%22OBV%22%3A%5B30%5D%2C%22BOLL%22%3A%5B20%5D%2C%22DMA%22%3A%5B10%2C50%2C10%5D%2C%22TRIX%22%3A%5B12%2C9%5D%2C%22BRAR%22%3A%5B26%5D%2C%22VR%22%3A%5B26%2C6%5D%2C%22EMV%22%3A%5B14%2C9%5D%2C%22WR%22%3A%5B10%2C6%5D%2C%22ROC%22%3A%5B12%2C6%5D%2C%22MTM%22%3A%5B12%2C6%5D%2C%22PSY%22%3A%5B12%2C6%5D%7D%2C%22theme%22%3A%22Dark%22%2C%22language%22%3A%22zh-cn%22%7D; Hm_lvt_7ba7fad219b0db5b6c7b4e1b97aa31de=1498452494,1498452600,1498452663,1498452715; Hm_lpvt_7ba7fad219b0db5b6c7b4e1b97aa31de=1498457489; PHPSESSID=0ede687e08a4963c8ec1bf23ff12655d' -H 'Connection: keep-alive' --compressed |grep -so 处理中`
+
+    if [[ $str == '处理中' ]]; then
+        # `osascript -e 'display notification "ttttttt" with title "行云币转出成功"'`
+        echo '处理中' >> /Users/limao/code/test/20170626/va.log;
+        echo '处理中';
+    else
+        `osascript -e 'display notification "ttttttt" with title "行云币转出成功"'`
+    fi
+
+    sleep 4;
+done
