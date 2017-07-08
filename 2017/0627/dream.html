@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Deep Dream</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="/Users/limao/code/test/20170627/dream_seed.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Deep Dream</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <!--  <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form> -->
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>您好!</h1>
+            <p>这里是deep dream 网站中所有的实例，我做了些优化，方便你快速中意自己喜欢的样式。当你中意后，便可以去享受机器学习给视觉带来的乐趣了。</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">DeepDream &raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="container" id="app">
+        <!-- Example row of columns -->
+        <div class="row">
+        <!-- Modal -->
+
+            <div class="col-md-4 col-sm-6" v-for="seed in seeds">
+
+                <img :src="seed.url + '-fb/' + seed.code + '.jpg'" data-toggle="modal" :data-target="'#' + seed.code">
+
+                <div class="modal fade" :id="seed.code" tabindex="-1" role="dialog" :aria-labelledby="seed.code + 'Label'">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" :id="seed.code + 'Label'">{{ seed.code }}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- <img :src="seed.url + '-origgin/' + seed.code + '.jpg'" alt="origgin"> -->
+                                <!-- <img :src="seed.url + '/' + seed.code + '.jpg'" alt="origgin"> -->
+                                <!-- <img :src="seed.url + '-style/' + seed.code + '.jpg'" alt="origgin"> -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr>
+        <footer>
+            <p>&copy; 2017 Limao, 2017-06-27.</p>
+        </footer>
+
+    </div>
+    <!-- /container -->
+
+
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+    for (var key in seeds) {
+        // console.log(key + " : "+ seeds[key]);
+    }
+    var app = new Vue({
+      el: '#app',
+      data: {
+        seeds: seeds,
+        message: 'Hello Vue!'
+      }
+    })
+    </script>
+</body>
+
+</html>

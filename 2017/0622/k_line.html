@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        .panel{ height: calc(100% - 30px); }
+        .panel-body { height: calc(100% - 30px); }
+        iframe{ width: 100%; height: 98%; }
+        a.label{ color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="row-fluid">
+                <div class="row-fluid">
+                    <h3 class="text-center">
+                虚拟货币专业版图
+                </h3>
+                </div>
+                <div class="row-fluid text-info">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            var COINS = [
+            {"symbol":"16","id":"ifc","name":"无限币(IFC)"},
+            {"symbol":"35","id":"mryc","name":"美人鱼币(MRYC)"},
+            {"symbol":"24","id":"qec","name":"企鹅链(QEC)"},
+            {"symbol":"17","id":"zcc","name":"招财币(ZCC)"},
+            {"symbol":"9","id":"ltc","name":"莱特币(LTC)"},
+            {"symbol":"22","id":"plc","name":"保罗币(PLC)"},
+            {"symbol":"13","id":"wdc","name":"世界币(WDC)"},
+            {"symbol":"36","id":"xas","name":"阿希币(XAS)"},
+            {"symbol":"27","id":"xrp","name":"瑞波币(XRP)"},
+            {"symbol":"35","id":"bts","name":"比特股(BTS)"},
+            {"symbol":"19","id":"eac","name":"地球币(EAC)"},
+            {"symbol":"10","id":"doge","name":"狗狗币(DOGE)"},
+            {"symbol":"37","id":"hlb","name":"活力币(HLB)"},
+            {"symbol":"7","id":"tfc","name":"传送币(TFC)"},
+            {"symbol":"29","id":"lkc","name":"幸运币(LKC)"},
+            {"symbol":"25","id":"dnc","name":"暗网币(DNC)"},
+            {"symbol":"21","id":"skt","name":"鲨之信(SKT)"},
+            {"symbol":"35","id":"etc","name":"以太经典(ETC)"},
+            {"symbol":"38","id":"ytc","name":"一号币(YTC)"},
+            {"symbol":"34","id":"eth","name":"以太坊(ETH)"},
+            {"symbol":"30","id":"met","name":"美通币(MET)"},
+            {"symbol":"28","id":"nxt","name":"未来币(NXT)"},
+            {"symbol":"8","id":"jbc","name":"聚宝币(JBC)"},
+            {"symbol":"18","id":"zet","name":"泽塔币(ZET)"},
+            {"symbol":"26","id":"gooc","name":"谷壳币(GOOC)"},
+            {"symbol":"31","id":"btc","name":""},
+            {"symbol":"11","id":"xpm","name":"质数币(XPM)"},
+            {"symbol":"23","id":"mtc","name":"猴宝币(MTC)"},
+            {"symbol":"5","id":"blk","name":"黑币(BLK)"},
+            {"symbol":"14","id":"vtc","name":"绿币(VTC)"},
+            {"symbol":"34","id":"xsgs","name":"雪山古树(XSGS)"},
+            {"symbol":"15","id":"max","name":"最大币(MAX)"},
+            {"symbol":"12","id":"ppc","name":"点点币(PPC)"},
+            {"symbol":"6","id":"vrc","name":"维理币(VRC)"}];
+
+            for(var i = 0; i < COINS.length; i++){
+                $('.text-info').append('<div class="col-md-6">'+
+                    '<div class="panel panel-default">'+
+                        '<div class="panel-heading">'+
+                            '<h3 class="panel-title">'+ COINS[i].name +'<a href="javascript:;" class="label label-primary pull-right launchFullScreen">全屏</a><a href="javascript:;" class="label label-primary pull-right exitFullscreen" style="display: none;">退出全屏</a></h3>'+
+                        '</div>'+
+                        '<div class="panel-body">'+
+                            '<iframe src="http://k.jubi.com/?symbol='+ COINS[i].symbol +'" frameborder="0"></iframe>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>')
+            }
+
+            reBuildIframes();
+
+            // 找到支持的方法, 使用需要全屏的 element 调用
+            function launchFullScreen(element) {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+            function exitFullscreen(callback) {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozExitFullScreen) {
+                    document.mozExitFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+                if(callback && typeof callback == 'function'){
+                    callback();
+                }
+            }
+            function reBuildIframe(element){
+                element.height((element.width() / ($(window)[0].screen.width / $(window)[0].screen.height) + 60))
+            }
+
+            function reBuildIframes(){
+                $.each($('.col-md-6'), function(index, col){
+                    reBuildIframe($(col).first());
+                });
+            }
+
+            $(window).resize(function() {
+                setTimeout(function () {
+                    reBuildIframes();
+                }, 100);
+            });
+
+            $(document).on('click', '.launchFullScreen', function(){
+                var _this = $(this);
+
+                _this.parents('.col-md-6').first().css({"width": "100%", "height": "100%"});
+                _this.hide().parent().find('.exitFullscreen').show();
+                launchFullScreen(_this.parents('.col-md-6').first()[0]);
+            })
+
+            $(document).on('click', '.exitFullscreen', function(){
+                var _this = $(this);
+                exitFullscreen(function(){
+                    _this.hide().parent().find('.launchFullScreen').show();
+                    _this.parents('.col-md-6').first().removeAttr('style');
+                    setTimeout(function(){
+                        reBuildIframe(_this.parents('.col-md-6').first())
+                    },1000);
+                });
+            })
+        });
+    </script>
+</body>
+
+</html>
